@@ -1,6 +1,22 @@
 <div class="mat-elevation-z8 fit-content">
-    <div>
-        <!-- <button mat-raised-button color="primary" (click)="refreshData()">Refresh Data</button> -->
+    <div class="filter">
+        <mat-form-field class="filterByCountry" appearance="fill">
+            <mat-label>Filter By Country</mat-label>
+            <mat-select [(value)]="countryCode" (valueChange)="filterByCountry()">
+                <mat-option value="(237)">Cameroon</mat-option>
+                <mat-option value="(251)">Ethiopia</mat-option>
+                <mat-option value="(212)">Morocco</mat-option>
+                <mat-option value="(258)">Mozambique</mat-option>
+                <mat-option value="(256)">Uganda</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Filter By State</mat-label>
+            <mat-select [(value)]="state" (valueChange)="filterByState()">
+                <mat-option value="valid">Valid Phonenumbers</mat-option>
+                <mat-option value="invalid">Invalid Phonenumbers</mat-option>
+            </mat-select>
+        </mat-form-field>
     </div>
 
     <table mat-table [dataSource]="dataSource">
@@ -11,7 +27,7 @@
             <td mat-cell *matCellDef="let i = index"> {{i+1}} </td>
         </ng-container>
 
-        <!-- Name Column -->
+        <!-- Phone Column -->
         <ng-container matColumnDef="phone">
             <th mat-header-cell *matHeaderCellDef> phone </th>
             <td mat-cell *matCellDef="let customerPhonenumbers"> {{customerPhonenumbers}} </td>

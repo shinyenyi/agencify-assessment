@@ -19,6 +19,9 @@ export class PhonenumbersComponent implements OnInit, OnDestroy {
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
+  countryCode: string = "";
+  state: string = "";
+  phonenumbersRequest = new PhonenumbersRequest(null, null);
 
   constructor(private phonenumbersService: PhonenumbersService) { }
 
@@ -27,8 +30,7 @@ export class PhonenumbersComponent implements OnInit, OnDestroy {
   }
 
   getCustomerPhonenumbers() {
-    const phonenumbersRequest = new PhonenumbersRequest(null, null);
-    this.subscription = this.phonenumbersService.getCustomerPhonenumbers(phonenumbersRequest).subscribe(
+    this.subscription = this.phonenumbersService.getCustomerPhonenumbers(this.phonenumbersRequest).subscribe(
       {
         next: (data) => { this.customerPhonenumbers = data },
         error: (error) => { },
@@ -38,6 +40,21 @@ export class PhonenumbersComponent implements OnInit, OnDestroy {
         }
       }
     );
+  }
+
+  filterByCountry() {
+    this.phonenumbersRequest = new PhonenumbersRequest(this.countryCode, null);
+    this.getCustomerPhonenumbers();
+  }
+
+  filterByState() {
+    if (this.state === "valid") {
+      this.phonenumbersRequest = new PhonenumbersRequest(null, true);
+    }
+    if (this.state === "invalid") {
+      this.phonenumbersRequest = new PhonenumbersRequest(null, false);
+    }
+    this.getCustomerPhonenumbers();
   }
 
   ngAfterViewInit() {
