@@ -49,9 +49,11 @@ public class CustomerServiceImpl implements CustomerService {
 		if (request.getState() != null && request.getCountry() == null) {
 
 			for (Customer customer : customers) {
+				
 				if (request.getState() && filterByState(customer.getPhone())) {
 					customerPhonenumbers.add(customer.getPhone());
 				}
+				
 				if (request.getState() == false && filterByState(customer.getPhone()) == false) {
 					customerPhonenumbers.add(customer.getPhone());
 				}
@@ -62,6 +64,7 @@ public class CustomerServiceImpl implements CustomerService {
 		if (request.getState() == null && request.getCountry() != null) {
 
 			for (Customer customer : customers) {
+				
 				if (request.getCountry().equals(customer.getPhone().substring(0, 5))) {
 					customerPhonenumbers.add(customer.getPhone());
 				}
