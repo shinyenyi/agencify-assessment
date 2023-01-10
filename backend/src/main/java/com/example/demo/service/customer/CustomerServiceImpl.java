@@ -14,12 +14,14 @@ public class CustomerServiceImpl implements CustomerService {
 	@Autowired
 	private CustomerRepository customerRepository;
 
-	private String[] filterByCountry() {
-		return null;
-	}
+	private Boolean filterByState(String phonenumber) {
 
-	private String[] filterByState() {
-		return null;
+		if (phonenumber.matches("\\(237\\)\\ ?[2368]\\d{7,8}$") || phonenumber.matches("\\(251\\)\\ ?[1-59]\\d{8}$")
+				|| phonenumber.matches("\\(212\\)\\ ?[5-9]\\d{8}$") || phonenumber.matches("\\(258\\)\\ ?[28]\\d{7,8}$")
+				|| phonenumber.matches("\\(256\\)\\ ?\\d{9}$")) {
+			return true;
+		}
+		return false;
 	}
 
 	@Override
@@ -40,6 +42,30 @@ public class CustomerServiceImpl implements CustomerService {
 
 			for (Customer customer : customers) {
 				customerPhonenumbers.add(customer.getPhone());
+			}
+			return customerPhonenumbers.toArray(new String[customerPhonenumbers.size()]);
+		}
+
+		if (request.getState() != null && request.getCountry() == null) {
+
+			for (Customer customer : customers) {
+				if (request.getState() && filterByState(customer.getPhone())) {
+					customerPhonenumbers.add(customer.getPhone());
+				}
+				if (request.getState() == false && filterByState(customer.getPhone()) == false) {
+					customerPhonenumbers.add(customer.getPhone());
+				}
+			}
+			return customerPhonenumbers.toArray(new String[customerPhonenumbers.size()]);
+		}
+
+		if (request.getState() == null && request.getCountry() != null) {
+
+			for (Customer customer : customers) {
+				if (request.getCountry().equals(customer.getPhone().substring(0, 5))) {
+					customerPhonenumbers.add(customer.getPhone());
+				}
+
 			}
 			return customerPhonenumbers.toArray(new String[customerPhonenumbers.size()]);
 		}
