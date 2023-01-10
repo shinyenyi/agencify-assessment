@@ -1,0 +1,43 @@
+<div class="mat-elevation-z8 fit-content">
+    <div class="filter">
+        <mat-form-field class="filterByCountry" appearance="fill">
+            <mat-label>Filter By Country</mat-label>
+            <mat-select [(value)]="countryCode" (valueChange)="filterByCountry()">
+                <mat-option value="(237)">Cameroon</mat-option>
+                <mat-option value="(251)">Ethiopia</mat-option>
+                <mat-option value="(212)">Morocco</mat-option>
+                <mat-option value="(258)">Mozambique</mat-option>
+                <mat-option value="(256)">Uganda</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Filter By State</mat-label>
+            <mat-select [(value)]="state" (valueChange)="filterByState()">
+                <mat-option value="valid">Valid Phonenumbers</mat-option>
+                <mat-option value="invalid">Invalid Phonenumbers</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <button mat-raised-button color="primary" style="float: left;" (click)="refresh()">refresh</button>
+    </div>
+
+    <table mat-table [dataSource]="dataSource">
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="#">
+            <th mat-header-cell *matHeaderCellDef># </th>
+            <td mat-cell *matCellDef="let i = index"> {{i+1}} </td>
+        </ng-container>
+
+        <!-- Phone Column -->
+        <ng-container matColumnDef="phone">
+            <th mat-header-cell *matHeaderCellDef> phone </th>
+            <td mat-cell *matCellDef="let customerPhonenumbers"> {{customerPhonenumbers}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+    </mat-paginator>
+</div>
