@@ -43,6 +43,7 @@ export class PhonenumbersComponent implements OnInit, OnDestroy {
   }
 
   filterByCountry() {
+    this.state = "";
     this.phonenumbersRequest = new PhonenumbersRequest(this.countryCode, null);
     this.getCustomerPhonenumbers();
   }
@@ -52,6 +53,7 @@ export class PhonenumbersComponent implements OnInit, OnDestroy {
   }
 
   filterByState() {
+    this.countryCode = "";
     if (this.state === "valid") {
       this.phonenumbersRequest = new PhonenumbersRequest(null, true);
     }
