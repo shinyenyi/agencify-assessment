@@ -1,5 +1,6 @@
 package com.example.demo.service.customer;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,5 +21,15 @@ public class CustomerServiceImpl implements CustomerService {
 		CustomerInitialData initialData = new CustomerInitialData(customers);
 
 		return initialData;
+	}
+
+	public String[] getCustomerPhonenumbers() {
+		List<Customer> customers = customerRepository.getAllCustomers();
+		ArrayList<String> customerPhonenumbers = null;
+
+		for (Customer customer : customers) {
+			customerPhonenumbers.add(customer.getPhone());
+		}
+		return customerPhonenumbers.toArray(new String[customerPhonenumbers.size()]);
 	}
 }
