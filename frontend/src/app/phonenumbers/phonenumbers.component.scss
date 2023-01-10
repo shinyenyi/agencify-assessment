@@ -4,7 +4,11 @@ table {
 }
 
 .filter {
+    display: flex;
+    align-items: baseline;
     margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .filterByCountry {
@@ -23,5 +27,6 @@ table {
 }
 
 button {
-    margin-top: 10px;
+ margin: 0;
+ margin-left: 5px;
 }

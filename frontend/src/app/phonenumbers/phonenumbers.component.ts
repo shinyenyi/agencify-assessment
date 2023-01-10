@@ -47,6 +47,10 @@ export class PhonenumbersComponent implements OnInit, OnDestroy {
     this.getCustomerPhonenumbers();
   }
 
+  refresh() {
+    window.location.reload();
+  }
+
   filterByState() {
     if (this.state === "valid") {
       this.phonenumbersRequest = new PhonenumbersRequest(null, true);

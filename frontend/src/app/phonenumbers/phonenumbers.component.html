@@ -17,13 +17,14 @@
                 <mat-option value="invalid">Invalid Phonenumbers</mat-option>
             </mat-select>
         </mat-form-field>
+        <button mat-raised-button color="primary" style="float: left;" (click)="refresh()">refresh</button>
     </div>
 
     <table mat-table [dataSource]="dataSource">
 
         <!-- Position Column -->
         <ng-container matColumnDef="#">
-            <th mat-header-cell *matHeaderCellDef> # </th>
+            <th mat-header-cell *matHeaderCellDef># </th>
             <td mat-cell *matCellDef="let i = index"> {{i+1}} </td>
         </ng-container>
 
