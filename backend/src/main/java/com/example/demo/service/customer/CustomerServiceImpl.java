@@ -34,7 +34,7 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public String[] getCustomerPhonenumbers(CustomerPhonenumberRequest request) {
 		List<Customer> customers = customerRepository.getAllCustomers();
-		ArrayList<String> customerPhonenumbers = null;
+		ArrayList<String> customerPhonenumbers = new ArrayList<String>();
 
 		if (request.getState() == null && request.getCountry() == null) {
 
