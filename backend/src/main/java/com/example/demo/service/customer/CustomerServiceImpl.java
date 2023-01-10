@@ -32,13 +32,18 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public String[] getCustomerPhonenumbers() {
+	public String[] getCustomerPhonenumbers(CustomerPhonenumberRequest request) {
 		List<Customer> customers = customerRepository.getAllCustomers();
 		ArrayList<String> customerPhonenumbers = null;
 
-		for (Customer customer : customers) {
-			customerPhonenumbers.add(customer.getPhone());
+		if (request.getState() == null && request.getCountry() == null) {
+
+			for (Customer customer : customers) {
+				customerPhonenumbers.add(customer.getPhone());
+			}
+			return customerPhonenumbers.toArray(new String[customerPhonenumbers.size()]);
 		}
-		return customerPhonenumbers.toArray(new String[customerPhonenumbers.size()]);
+
+		return null;
 	}
 }
