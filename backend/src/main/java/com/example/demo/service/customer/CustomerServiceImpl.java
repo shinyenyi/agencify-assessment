@@ -14,6 +14,14 @@ public class CustomerServiceImpl implements CustomerService {
 	@Autowired
 	private CustomerRepository customerRepository;
 
+	private String[] filterByCountry() {
+		return null;
+	}
+
+	private String[] filterByState() {
+		return null;
+	}
+
 	@Override
 	public CustomerInitialData getInitialData() {
 		List<Customer> customers = customerRepository.getAllCustomers();
@@ -23,6 +31,7 @@ public class CustomerServiceImpl implements CustomerService {
 		return initialData;
 	}
 
+	@Override
 	public String[] getCustomerPhonenumbers() {
 		List<Customer> customers = customerRepository.getAllCustomers();
 		ArrayList<String> customerPhonenumbers = null;
