@@ -17,8 +17,8 @@ import com.example.demo.domain.customer.Customer;
 public class CustomerRepositoryTest {
 
 	@Autowired
-	private CustomerRepository customerRepository;
-	
+	private CustomerRepositoryImpl customerRepository;
+
 	@BeforeEach
 	void init() {
 //		set up data

@@ -7,6 +7,7 @@ import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -26,11 +27,19 @@ public class CustomerServiceTest {
 	@Mock
 	private CustomerRepository customerRepository;
 
+	private Customer ian;
+	private Customer dan;
+
+	@BeforeEach
+	void init() {
+//		set up data
+		ian = new Customer(1, "", "");
+		dan = new Customer(2, "", "");
+	}
+
 	@Test
 	@DisplayName("Should return list of customers of size 2")
 	void getAllCustomers() {
-		Customer ian = new Customer(1, "", "");
-		Customer dan = new Customer(2, "", "");
 
 		List<Customer> list = new ArrayList<>();
 		list.add(dan);
@@ -49,8 +58,6 @@ public class CustomerServiceTest {
 	@Test
 	@DisplayName("Should return array of phonenumbers")
 	void getAllPhonenumbers() {
-		Customer ian = new Customer(1, "", "");
-		Customer dan = new Customer(2, "", "");
 
 		List<Customer> list = new ArrayList<>();
 		list.add(dan);
